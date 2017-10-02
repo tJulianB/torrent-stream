@@ -5,7 +5,7 @@
 
 The streaming torrent engine that [peerflix](https://github.com/mafintosh/peerflix) uses
 
-	npm install torrent-stream
+	npm install hypertorrent-stream
 
 ## How can I help?
 
