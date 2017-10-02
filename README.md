@@ -61,6 +61,7 @@ Create a new engine instance. Options can contain the following
 	                      // Defaults to '/tmp' or temp folder specific to your OS.
 	                      // Each torrent will be placed into a separate folder under /tmp/torrent-stream/{infoHash}
 	path: '/tmp/my-file', // Where to save the files. Overrides `tmp`.
+	name: 'mytorrent',    // Folder created inside the path (NEW)
 	verify: true,         // Verify previously stored data before starting
 	                      // Defaults to true
 	dht: true,            // Whether or not to use DHT to initialize the swarm.
