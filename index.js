@@ -76,6 +76,7 @@ var torrentStream = function (link, opts, cb) {
 
   var engine = new events.EventEmitter()
   var swarm = pws(infoHash, opts.id, { size: (opts.connections || opts.size), speed: 10 })
+  
   var torrentPath = path.join(opts.tmp, opts.name, infoHash + '.torrent')
 
   if (cb) engine.on('ready', cb.bind(null, engine))
@@ -130,7 +131,7 @@ var torrentStream = function (link, opts, cb) {
     engine.store = ImmediateChunkStore(storage(torrent.pieceLength, {
       files: torrent.files.map(function (file) {
         return {
-          path: path.join(opts.path, file.path),
+          path: path.join(opts.path, opts.name, file.name),
           length: file.length,
           offset: file.offset
         }
@@ -154,7 +155,6 @@ var torrentStream = function (link, opts, cb) {
       // so discovery will start using the correct torrent port.
       discovery.setTorrent(torrent)
     })
-
     engine.files = torrent.files.map(function (file) {
       file = Object.create(file)
       var offsetPiece = (file.offset / torrent.pieceLength) | 0
